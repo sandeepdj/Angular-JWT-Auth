@@ -1,0 +1,38 @@
+.login-page{
+    height: 100%;
+    width: 100%;
+    background: url('./../../../assets/1.jpg');
+    background-size: contain;
+    background-position: center;
+}
+
+.login-page .container-fluid, .login-page .container-fluid .row, .login-left-part, .login-right-part{
+    height: 100%;
+}
+
+.login-right-part{
+    background: #ffffff
+}
+.authForm{
+    margin-top: 10%;
+    padding: 20%;
+}
+.authForm .form-control{
+    height: 40px;
+}
+
+
+@media (max-width: 767px) { 
+    .login-left-part{
+        display: none;
+    }
+
+    .authForm{
+        margin-top: 10%;
+        padding: 15%;
+    }
+    .login-right-part{
+        background: transparent;
+    }
+ }
+
