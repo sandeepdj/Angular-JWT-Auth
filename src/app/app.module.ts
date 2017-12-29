@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { AppGlobals } from './shared/app.global';
 
 import { AppRoutingModule } from './app.router';
 
@@ -25,10 +27,11 @@ import { AuthenticationService } from './services/authentication.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
     
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,AppGlobals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

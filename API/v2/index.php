@@ -3,25 +3,27 @@ require 'vendor/autoload.php';
 
 // Set the current mode
 $app = new \Slim\Slim(array(
-    'mode' => 'development'
+    'mode' => 'development' ,
+    'JWT_SECRET'=>"supersecretkeyyoushouldnotcommittogithub"
 ));
 
-/*** 
- //CAN BE USED FOR headers options
-$corsOptions = array(
-    "origin" => "*",
-    "exposeHeaders" => array("X-My-Custom-Header", "X-Another-Custom-Header"),
-    "maxAge" => 1728000,
-    "allowCredentials" => True,
-    "allowMethods" => array("POST, GET"),
-    "allowHeaders" => array("X-PINGOTHER")
-    );
-$cors = new \CorsSlim\CorsSlim($corsOptions);
+ 
+ 
+ $corsOptions = array(
+        "origin" => "*",
+        "exposeHeaders" => array("X-My-Custom-Header", "X-Another-Custom-Header"),
+        "maxAge" => 1728000,
+        "allowCredentials" => True,
+        "allowMethods" => array("POST, GET,PUT, PATCH, DELETE,"),
+        "allowHeaders" => array("Origin, X-Requested-With, Content-Type, Accept")
+);
 
-*/
 
-$app->add(new \CorsSlim\CorsSlim());
+$app->add(new \CorsSlim\CorsSlim($corsOptions));
+ 
 
+
+//$app->add(new \CorsSlim\CorsSlim());
 
 // Only invoked if mode is "production"
 $app->configureMode('production', function () use ($app) {
@@ -38,11 +40,28 @@ $app->configureMode('development', function () use ($app) {
         'debug' => true
     ));
 });
+ 
+/*************************************************************************
+                                JWT MIDDLEWARE
+*************************************************************************/
+$app->add(new \Slim\Middleware\JwtAuthentication([
+    "path" => "/api", /* or ["/api", "/admin"]  Protected paths */
+    "passthrough" => ["/login","/not-secure"],  /* make exceptions to path parameter. */
+    "secret" => getenv("JWT_SECRET") ,
+    "algorithm" => ["HS256", "HS384"]
+]));
 
-/*
-    //Alternative to above 2 modes
-    $_ENV['SLIM_MODE'] = 'production';
-*/
+
+function echoResponse($status_code, $response) {
+    $app = \Slim\Slim::getInstance();
+    // Http response code
+    $app->status($status_code);
+    // setting response content type to json
+    $app->contentType('application/json');
+
+    echo json_encode($response);
+}
+
 
 
 require 'procedures.php';

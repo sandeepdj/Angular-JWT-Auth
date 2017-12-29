@@ -1,6 +1,7 @@
 {
     "require": {
         "slim/slim": "~2.0",
-        "palanik/corsslim": "*"
+        "palanik/corsslim": "*",
+        "tuupola/slim-jwt-auth": "^1.0"
     }
 }

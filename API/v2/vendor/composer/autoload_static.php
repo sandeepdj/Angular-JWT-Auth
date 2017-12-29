@@ -7,6 +7,18 @@ namespace Composer\Autoload;
 class ComposerStaticInit4182cd7677349f8b3dd06b94689224d5
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Slim\\Middleware\\' => 16,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'C' => 
         array (
             'CorsSlim\\' => 9,
@@ -14,6 +26,18 @@ class ComposerStaticInit4182cd7677349f8b3dd06b94689224d5
     );
 
     public static $prefixDirsPsr4 = array (
+        'Slim\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
         'CorsSlim\\' => 
         array (
             0 => __DIR__ . '/..' . '/palanik/corsslim',

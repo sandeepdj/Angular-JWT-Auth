@@ -9,7 +9,8 @@ import { AuthenticationService } from '../../services/authentication.service'
 export class LoginComponent implements OnInit {
   user: any = {};
   loading = false;
-  constructor() { }
+ 
+  constructor(private Auth: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -19,15 +20,22 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     console.log(this.user.username);
     console.log(this.user.password);
-    // this.authenticationService.login(this.model.username, this.model.password)
-    //     .subscribe(
-    //         data => {
-    //             this.router.navigate([this.returnUrl]);
-    //         },
-    //         error => {
-    //             this.alertService.error(error);
-    //             this.loading = false;
-    //         });
+   
+     var username = this.user.username;
+     var password = this.user.password;
+
+     //var userData = JSON.stringify({type:"user", username:username, password:password});
+     var userData ={username:username, password:password};
+
+    this.Auth.login(userData)
+        .subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+                this.loading = false;
+            });
 }
 
 
