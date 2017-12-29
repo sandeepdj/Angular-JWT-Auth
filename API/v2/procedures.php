@@ -17,27 +17,39 @@ $app->get("/not-secure",  function () {
 });
  
 $app->post("/login", function ()  use ($app) {
-
-
      // get and decode JSON request body
      $request = $app->request();
      $body = $request->getBody();
      $input = json_decode($body); 
-
-
-      $username  = $input->username;
+     $username  = $input->username;
      $password  = $input->password;
- 
+     $response=array();
     if($username=="sandeep" &&  $password =="admin"){
-        $response['status']='success';
-        $response['message']='Login Success';
-        $response['user']="S ".$username. $password;
+        // $response['status']='success';
+        
+        
+            $now = new DateTime();
+            $future = new DateTime("+10 minutes");
+           // $server = $request->getServerParams();
+           // $jti = (new Base62)->encode(random_bytes(16));
+            $payload = [
+                "iat" => $now->getTimeStamp(),
+                "exp" => $future->getTimeStamp(),
+                "sub"=>"Test for JWT"
+                 
+            ];
+            $secret = "123456789helo_secret";
+            $token = JWT::encode($payload, $secret, "HS256");
+            $response["token"] = $token;
+            $response["expires"] = $future->getTimeStamp();
+
+
+
     }else{
         $response['status']='error';
         $response['message']='Wrong login credentails';
         $response['user']="F".$username.$password;
     }
- 
 
      //var_dump($username );
   echoResponse(200,$response);

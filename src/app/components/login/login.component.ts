@@ -20,13 +20,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     console.log(this.user.username);
     console.log(this.user.password);
-   
-     var username = this.user.username;
-     var password = this.user.password;
-
-     //var userData = JSON.stringify({type:"user", username:username, password:password});
-     var userData ={username:username, password:password};
-
+    var username = this.user.username;
+    var password = this.user.password;
+    var userData ={username:username, password:password};
     this.Auth.login(userData)
         .subscribe(
             data => {

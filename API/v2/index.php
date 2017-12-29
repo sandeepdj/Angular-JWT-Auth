@@ -44,6 +44,8 @@ $app->configureMode('development', function () use ($app) {
 /*************************************************************************
                                 JWT MIDDLEWARE
 *************************************************************************/
+ 
+
 $app->add(new \Slim\Middleware\JwtAuthentication([
     "path" => "/api", /* or ["/api", "/admin"]  Protected paths */
     "passthrough" => ["/login","/not-secure"],  /* make exceptions to path parameter. */
