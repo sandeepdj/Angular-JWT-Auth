@@ -5,24 +5,34 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+ 
+import { 
+  LoginComponent,
+  HeaderComponent
+ } from './components/index';
+
+import { 
+  DashboardComponent,
+  HomeComponent,
+} from './modules/index';
 
 import { AppGlobals } from './shared/app.global';
 
 import { AppRoutingModule } from './app.router';
 
 //Services
-import { AuthenticationService } from './services/authentication.service';
+//import { AuthService } from './services/authentication.service';
 
+import { AuthService, AuthGuard } from './services/index';
+ 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,11 @@ import { AuthenticationService } from './services/authentication.service';
     HttpClientModule
     
   ],
-  providers: [AuthenticationService,AppGlobals],
+  providers: [
+    AuthGuard,
+    AuthService,
+    AppGlobals
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

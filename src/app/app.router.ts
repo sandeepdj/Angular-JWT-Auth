@@ -1,13 +1,29 @@
 import { NgModule } from '@angular/core';
+import { ExtraOptions,Routes, RouterModule} from "@angular/router";
+ 
+import { 
+  LoginComponent,
+  HeaderComponent,
+} from './components/index';
 
-import {ExtraOptions,Routes, RouterModule} from "@angular/router";
-import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { 
+  DashboardComponent,
+  HomeComponent,
+} from './modules/index';
+
+import { AuthGuard } from './services/index';
 
 const ROUTES: Routes = [
     {path: '', redirectTo: 'Login', pathMatch: 'full'},
-    { path: 'Login', component: LoginComponent }
+    { path: 'Login', component: LoginComponent },
+    { 
+      path: 'app', component: HeaderComponent,canActivate: [AuthGuard], 
+      children: [
+        {path: '', redirectTo: 'Home',pathMatch: 'full'}, 
+        {path: 'Home', component: HomeComponent}, 
+        {path: 'Dashboard', component: DashboardComponent}, 
+      ]
+    }
 ];
 
 const config: ExtraOptions = {
