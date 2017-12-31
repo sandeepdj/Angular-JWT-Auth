@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user: any = {};
   loading = false;
- 
+  
+ message: string;
   constructor(private Auth: AuthService,private router: Router) { }
 
   ngOnInit() {
@@ -27,8 +28,12 @@ export class LoginComponent implements OnInit {
         .subscribe(
             data => {
                 console.log(data);
-                
-                 this.router.navigate(['/app/Home']);
+                if(data==true){
+                    this.router.navigate(['/app/Home']);
+                }else{
+                    this.message = "Wrong login credentials";
+                }
+                 
             },
             error => {
                 console.log(error);

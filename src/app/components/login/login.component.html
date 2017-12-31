@@ -9,6 +9,10 @@
                 <div class="form-group">
                     <h3 class="text-center"> Please Sing In </h3>
                   </div>
+                  <div class="form-group">
+                    <p class="text-center " style="color:red"> {{message}} </p>
+                  </div>
+
                 <div class="form-group">
                   <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                       <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
