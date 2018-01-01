@@ -4,8 +4,10 @@ import { ExtraOptions,Routes, RouterModule} from "@angular/router";
 import { 
   LoginComponent,
   HeaderComponent,
-} from './components/index';
-
+  SidebarComponent,
+  LayoutComponent,
+  FooterComponent
+ } from './components/index';
 import { 
   DashboardComponent,
   HomeComponent,
@@ -17,7 +19,7 @@ const ROUTES: Routes = [
     {path: '', redirectTo: 'Login', pathMatch: 'full'},
     { path: 'Login', component: LoginComponent },
     { 
-      path: 'app', component: HeaderComponent,canActivate: [AuthGuard], 
+      path: 'app', component: LayoutComponent,canActivate: [AuthGuard], 
       children: [
         {path: '', redirectTo: 'Home',pathMatch: 'full'}, 
         {path: 'Home', component: HomeComponent}, 

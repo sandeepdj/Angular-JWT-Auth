@@ -12,7 +12,26 @@
                   <div class="form-group">
                     <p class="text-center " style="color:red"> {{message}} </p>
                   </div>
-
+                  <div class="form-group">
+                      <div class="col-md-6" style="padding: 0;">
+                         <div class="input-group"  [ngClass]="{ 'has-error': f.submitted && !scode.valid }">
+                          <input type="text" class="form-control" 
+                            name="scode" placeholder="School Code"
+                            [(ngModel)]="user.scode"  #scode="ngModel"
+                            >
+                            </div>
+                      </div>
+                      <div class="col-md-6" style="padding-left: 5px;">
+                         <div class="input-group"   [ngClass]="{ 'has-error': f.submitted && !fyear.valid }">
+                          <select class="form-control"  name="fyear"
+                           [(ngModel)]="user.fyear"  #fyear="ngModel" 
+                           > 
+                              <option value="1718" selected>2017-2018</option>
+                              <option value="1819">2018-2019</option>
+                          </select>
+                        </div>
+                      </div>
+                  </div>
                 <div class="form-group">
                   <div class="input-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                       <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>

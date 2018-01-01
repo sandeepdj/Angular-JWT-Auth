@@ -8,7 +8,10 @@ import { AppComponent } from './app.component';
  
 import { 
   LoginComponent,
-  HeaderComponent
+  HeaderComponent,
+  SidebarComponent,
+  LayoutComponent,
+  FooterComponent
  } from './components/index';
 
 import { 
@@ -25,14 +28,16 @@ import { AppRoutingModule } from './app.router';
 
 import { AuthService, AuthGuard } from './services/index';
  
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent,
+    LayoutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

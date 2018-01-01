@@ -1,5 +1,5 @@
 <?php
-
+ 
 $app->get('/', function () {
     echo "I am root";
 });
@@ -27,6 +27,31 @@ $app->get("/secure",  function () use ($app) {
     //echo  $name;
      $data = ["status" => 1, 'msg' => "I have token number ...Authorized"];
      echo   json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+});
+
+
+$app->get('/modules',function(){
+        require_once 'dbconfig.php';
+         //$conn =getConnection();
+        $refs = array();
+        $list = array();
+        
+        $sql ="select * from menus where active='Yes'";
+        $result = mysqli_query($conn,$sql);
+        while($data = mysqli_fetch_assoc($result)) {
+            $thisref = &$refs[ $data['mid'] ];
+            $thisref['mnm'] = $data['mnm'];
+            $thisref['url'] = $data['url'];
+            $thisref['icon'] = $data['icon'];
+             $thisref['parent_id'] = $data['pid'];
+            if ($data['pid'] == 0) {
+                $list[  ] = &$thisref;
+            } else {
+                $refs[ $data['pid'] ]['children'][] = &$thisref;
+            }
+        }
+        $mylist["data"] = $list;
+    echoResponse(200, $mylist);
 });
 
 

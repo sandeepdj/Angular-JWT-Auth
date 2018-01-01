@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user: any = {};
   loading = false;
-  
+  scode: any = {};
+  fyear: any = {};
+
  message: string;
   constructor(private Auth: AuthService,private router: Router) { }
 
@@ -19,11 +21,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading = true;
-    console.log(this.user.username);
-    console.log(this.user.password);
+
     var username = this.user.username;
     var password = this.user.password;
-    var userData ={username:username, password:password};
+    var scode = this.user.scode;
+    var fyear = this.user.fyear;
+    var userData ={username:username, password:password,scode:scode,fyear:fyear};
     this.Auth.login(userData)
         .subscribe(
             data => {

@@ -1,4 +1,8 @@
 <?php
+ if (!isset($_SESSION)) {
+        session_start();
+    }  
+    
 require 'vendor/autoload.php';
 use \Firebase\JWT\JWT;
 use \Tuupola\Base62;

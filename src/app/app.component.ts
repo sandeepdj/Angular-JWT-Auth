@@ -6,11 +6,10 @@ import { Component,HostListener } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  key:any;
-@HostListener("window:beforeunload",["$event"])
-beforeunloadHandler(event){
-  localStorage.removeItem(this.key);
-}
-
+  	key:any;
+	@HostListener("window:beforeunload",["$event"])
+	beforeunloadHandler(event){
+	  localStorage.removeItem(this.key);
+	}
   title = 'app';
 }
