@@ -4,19 +4,27 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
+class ComposerStaticInitd775d82b30e53b44254cc4796da62f94
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
-            'Tuupola\\Middleware\\' => 19,
+            'Tuupola\\' => 8,
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\Debug\\' => 24,
+            'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Config\\' => 25,
+            'Slim\\Views\\' => 11,
             'Slim\\Middleware\\' => 16,
             'Slim\\' => 5,
         ),
@@ -25,10 +33,11 @@ class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'Phinx\\' => 6,
         ),
-        'N' => 
+        'M' => 
         array (
-            'Neomerx\\Cors\\' => 13,
+            'Monolog\\' => 8,
         ),
         'I' => 
         array (
@@ -39,16 +48,40 @@ class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
             'Firebase\\JWT\\' => 13,
             'FastRoute\\' => 10,
         ),
-        'C' => 
-        array (
-            'CorsSlim\\' => 9,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Tuupola\\Middleware\\' => 
+        'Tuupola\\' => 
         array (
-            0 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+            0 => __DIR__ . '/..' . '/tuupola/base62/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Yaml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
+        'Symfony\\Component\\Console\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Slim\\Views\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/slim/php-view/src',
         ),
         'Slim\\Middleware\\' => 
         array (
@@ -70,9 +103,13 @@ class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Neomerx\\Cors\\' => 
+        'Phinx\\' => 
         array (
-            0 => __DIR__ . '/..' . '/neomerx/cors-psr7/src',
+            0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Interop\\Container\\' => 
         array (
@@ -86,10 +123,10 @@ class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'CorsSlim\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/palanik/corsslim',
-        ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/../..' . '/classes',
     );
 
     public static $prefixesPsr0 = array (
@@ -105,9 +142,10 @@ class ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5e14dd6755a1fd553489ad9633c9c9b2::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd775d82b30e53b44254cc4796da62f94::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd775d82b30e53b44254cc4796da62f94::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitd775d82b30e53b44254cc4796da62f94::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd775d82b30e53b44254cc4796da62f94::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
