@@ -4,18 +4,15 @@
  use Monolog\Logger;
  use Monolog\Handler\RotatingFileHandler;
  use \Firebase\JWT\JWT;
- use  \Tuupola\Base62;
+ use  Tuupola\Base62;
+ use DateTime;
  
-
+ 
  require 'vendor/autoload.php';
  
-
-
  $app = new \Slim\App();
 
- 
-
- $logger = new Logger("slim");
+$logger = new Logger("slim");
 $rotating = new RotatingFileHandler(__DIR__ . "/logs/slim.log", 0, Logger::DEBUG);
 $logger->pushHandler($rotating);
 
@@ -38,8 +35,8 @@ $logger->pushHandler($rotating);
 // };
 
 $app->add(new \Slim\Middleware\JwtAuthentication([
-    "path" => ["/books","/hello"],
-    "logger" => $logger,
+    
+    "path" => ["/books","/test"],
     "passthrough" => ["/login"],
     "secret" => "supersecretkeyyoushouldnotcommittogithub",
     "algorithm" => ["HS256", "HS384"],
@@ -58,44 +55,57 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
 
 
 
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+$app->get('/hello', function (Request $request, Response $response, array $args) {
+    $name = "SANDEEP JADHAV";
+    $response->getBody()->write("Hello, $name");
+    return $response;
+});
+
+
+
+$app->get('/test/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
     return $response;
 });
 
 
+
 $app->get('/token', function (Request $request, Response $response, array $args) {
     $now = new DateTime();
     $future = new DateTime("now +2 hours");
-
-     // $jti = $base62->encode(987654321); 
-
+    $future1 = new DateTime("now +3 hours");
     $jti = new Base62(["characters" => Base62::GMP]);
-    // $jti = Base62::encode(123456578);
-    $secret = "supersecretkeyyoushouldnotcommittogithub";
+     $secret = "supersecretkeyyoushouldnotcommittogithub";
+
+ 
+    
     $payload = [
         "jti" => $jti,
+        "nbf"=>$future1->getTimeStamp(),
         "iat" => $now->getTimeStamp(),
-        "nbf" => $future->getTimeStamp()
+        "exp" => $future->getTimeStamp(),
     ];
-    $token = JWT::encode($payload, $secret, "HS256");
+    JWT::$leeway = 60; // $leeway in seconds
+     $token = JWT::encode($payload, $secret, "HS256");
     return $token;
 });
 
  
 
 $app->group('/books', function () use ($app) {
-    $app->get('', function ($req, $res) {
-        // Return list of books
+    $app->get('', function (Request $request, Response $response, array $args) {
+        $name ="Books Root";
+        $response->getBody()->write("I'm in , $name");
+        return $response;
     });
-    $app->post('', function ($req, $res) {
+    $app->post('', function (Request $request, Response $response, array $args) {
         // Create a new book
     });
-    $app->get('/{id:\d+}', function ($req, $res, $args) {
+    $app->get('/{id:\d+}', function (Request $request, Response $response, array $args) {
         // Return a single book
     });
-    $app->put('/{id:\d+}', function ($req, $res, $args) {
+    $app->put('/{id:\d+}', function (Request $request, Response $response, array $args) {
         // Update a book
     });
 });
