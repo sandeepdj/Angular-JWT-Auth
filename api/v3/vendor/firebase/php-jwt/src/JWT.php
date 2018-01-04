@@ -114,18 +114,10 @@ class JWT
 
         // Check if the nbf if it is defined. This is the time that the
         // token can actually be used. If it's not yet that time, abort.
-<<<<<<< HEAD
         // Commented by sandeep JADHAV
         // if (isset($payload->nbf) && $payload->nbf > ($timestamp + static::$leeway)) {
         //     throw new BeforeValidException(
         //         'Cannot handle token prior to ' . date(DateTime::ISO8601, $payload->nbf)
-=======
-
-        /******COMMMENTED TEMPRARY BY SANDEEP JADHAV */
-        // if (isset($payload->nbf) && $payload->nbf > ($timestamp + static::$leeway)) {
-        //     throw new BeforeValidException(
-        //         'Cannot handle token prior to (nbf) ' . date(DateTime::ISO8601, $payload->nbf)
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
         //     );
         // }
 

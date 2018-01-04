@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,7 +31,8 @@ import { AppRoutingModule } from './app.router';
 import {TokenInterceptor} from './services/token.interceptor';
 import { AuthService, AuthGuard,SidebarService } from './services/index';
 import { MenulistComponent } from './components/sidebar/menulist/menulist.component';
-  
+import { MaterialModule } from './material.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,9 +49,11 @@ import { MenulistComponent } from './components/sidebar/menulist/menulist.compon
    ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
     
   ],
   providers: [

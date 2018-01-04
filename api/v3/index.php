@@ -1,14 +1,13 @@
 <?php
- 
  use Monolog\Logger;
  use Monolog\Handler\RotatingFileHandler;
  use \Firebase\JWT\JWT;
-<<<<<<< HEAD
- use  \Tuupola\Base62;
+ use  Tuupola\Base62;
 
 
 require 'vendor/autoload.php';
 $app = new \Slim\App(array( 'debug' => true ));
+
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
@@ -16,15 +15,6 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
-=======
- use  Tuupola\Base62;
- use DateTime;
- 
- 
- require 'vendor/autoload.php';
- 
- $app = new \Slim\App();
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
 
 $logger = new Logger("slim");
 $rotating = new RotatingFileHandler(__DIR__ . "/logs/slim.log", 0, Logger::DEBUG);
@@ -39,13 +29,8 @@ $container['logger'] = function($c) {
 };
  
 $app->add(new \Slim\Middleware\JwtAuthentication([
-<<<<<<< HEAD
+ 
     "path" => ["/books","/modules"],
-    "logger" => $logger,
-=======
-    
-    "path" => ["/books","/test"],
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
     "passthrough" => ["/login"],
     "secret" => "supersecretkeyyoushouldnotcommittogithub",
     "algorithm" => ["HS256", "HS384"],
@@ -61,46 +46,18 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     }
 ]));
 
-<<<<<<< HEAD
 $app->get('/hello/{name}', function ($request, $response, $args) {
-=======
-
-
-
-$app->get('/hello', function (Request $request, Response $response, array $args) {
-    $name = "SANDEEP JADHAV";
-    $response->getBody()->write("Hello, $name");
-    return $response;
-});
-
-
-
-$app->get('/test/{name}', function (Request $request, Response $response, array $args) {
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
     return $response;
 });
 
-<<<<<<< HEAD
 function token($emid,$name,$dbnm){
     $now = new DateTime();
     $future = new DateTime("now +2 hours");
+     $future1 = new DateTime("now +3 hours");
     $jti = new Base62(["characters" => Base62::GMP]);
     $secret = "supersecretkeyyoushouldnotcommittogithub";
-=======
-
-
-$app->get('/token', function (Request $request, Response $response, array $args) {
-    $now = new DateTime();
-    $future = new DateTime("now +2 hours");
-    $future1 = new DateTime("now +3 hours");
-    $jti = new Base62(["characters" => Base62::GMP]);
-     $secret = "supersecretkeyyoushouldnotcommittogithub";
-
- 
-    
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
     $payload = [
         "emid" =>$emid,
         "ename"=>$name,
@@ -108,28 +65,18 @@ $app->get('/token', function (Request $request, Response $response, array $args)
         "jti" => $jti,
         "nbf"=>$future1->getTimeStamp(),
         "iat" => $now->getTimeStamp(),
-        "exp" => $future->getTimeStamp(),
+        "exp" => $future->getTimeStamp()
     ];
-<<<<<<< HEAD
-    JWT::$leeway = 5;
+    JWT::$leeway = 60;
     $token = JWT::encode($payload, $secret, "HS256");
-=======
-    JWT::$leeway = 60; // $leeway in seconds
-     $token = JWT::encode($payload, $secret, "HS256");
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
     return $token;
 }
-
-$app->get('/token', function ($request, $response, $args) {
-    $token  = token();
-    echo $token;
-
-});
+ 
 
 function adminDb(){
     $host="localhost";
     $user = "root";
-    $pass="";
+    $pass="root";
     $db="s_admin";
     $con = mysqli_connect($host,$user,$pass,$db);
     return $con;
@@ -138,7 +85,7 @@ function adminDb(){
 function getConnection($dbname){
     $host="localhost";
     $user = "root";
-    $pass="";
+    $pass="root";
     $db=$dbname;
     $conn = mysqli_connect($host,$user,$pass,$db);
     return $conn;
@@ -223,7 +170,6 @@ echo json_encode($mylist);
 
 
 $app->group('/books', function () use ($app) {
-<<<<<<< HEAD
     $app->get('', function ($request, $response, $args) {
         $response = array();
         $db = $this->jwt->dbname;
@@ -245,20 +191,6 @@ $app->group('/books', function () use ($app) {
         // Return a single book
     });
     $app->put('/{id:\d+}', function ($request, $response, $args) {
-=======
-    $app->get('', function (Request $request, Response $response, array $args) {
-        $name ="Books Root";
-        $response->getBody()->write("I'm in , $name");
-        return $response;
-    });
-    $app->post('', function (Request $request, Response $response, array $args) {
-        // Create a new book
-    });
-    $app->get('/{id:\d+}', function (Request $request, Response $response, array $args) {
-        // Return a single book
-    });
-    $app->put('/{id:\d+}', function (Request $request, Response $response, array $args) {
->>>>>>> fc8106df357b27df4b94eae0348f028d43f8ce20
         // Update a book
     });
 });
