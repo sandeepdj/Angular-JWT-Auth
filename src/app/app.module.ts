@@ -4,9 +4,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { TokenInterceptor } from './services/token.interceptor';
- import { AppComponent } from './app.component';
-import { 
+import { AppComponent } from './app.component';
+import {
   LoginComponent,
   HeaderComponent,
   SidebarComponent,
@@ -14,12 +13,12 @@ import {
   FooterComponent
  } from './components/index';
 
-import { 
+import {
   DashboardComponent,
   HomeComponent,
 } from './modules/index';
 
-import { 
+import {
   C404Component,
   C401HComponent,
 } from './http-status/index';
@@ -27,11 +26,13 @@ import {
 import { AppGlobals } from './shared/app.global';
 import { AppRoutingModule } from './app.router';
 //Services
-//import { AuthService } from './services/authentication.service';
 import {TokenInterceptor} from './services/token.interceptor';
 import { AuthService, AuthGuard,SidebarService } from './services/index';
 import { MenulistComponent } from './components/sidebar/menulist/menulist.component';
 import { MaterialModule } from './material.module';
+import { ChartModule } from 'angular2-highcharts';
+
+ 
 
 @NgModule({
   declarations: [
@@ -53,8 +54,12 @@ import { MaterialModule } from './material.module';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule
-    
+    MaterialModule,
+    ChartModule.forRoot(
+      require('highcharts'),
+      require('highcharts/modules/exporting'),
+      require('highcharts/highcharts-3d'),
+    )
   ],
   providers: [
     AuthGuard,

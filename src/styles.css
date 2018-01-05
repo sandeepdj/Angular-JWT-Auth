@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-html,body{
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
     height: 100%;
     width: 100%;
     font-family: "Open Sans", sans-serif;
 }
 
-.text-center{
+.text-center {
     text-align: center
 }

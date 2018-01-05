@@ -8,6 +8,9 @@
 require 'vendor/autoload.php';
 $app = new \Slim\App(array( 'debug' => true ));
 
+
+require_once 'db.php';
+
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
@@ -73,23 +76,7 @@ function token($emid,$name,$dbnm){
 }
  
 
-function adminDb(){
-    $host="localhost";
-    $user = "root";
-    $pass="root";
-    $db="s_admin";
-    $con = mysqli_connect($host,$user,$pass,$db);
-    return $con;
-}
 
-function getConnection($dbname){
-    $host="localhost";
-    $user = "root";
-    $pass="root";
-    $db=$dbname;
-    $conn = mysqli_connect($host,$user,$pass,$db);
-    return $conn;
-}
 
 
 $app->post('/login', function ($request, $response, $args) use ($app) {
