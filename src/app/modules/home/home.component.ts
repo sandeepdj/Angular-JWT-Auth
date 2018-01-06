@@ -18,9 +18,7 @@ export class HomeComponent implements OnInit {
   this.options = {
     chart: {
         type: 'line',
-        width: 400,
-        margin: 75,
-        options3d: {
+         options3d: {
             enabled: true,
             alpha: 15,
             beta: 15,
@@ -42,14 +40,15 @@ export class HomeComponent implements OnInit {
   this.options3D = {
     chart: {
         type: 'column',
-        width: 400,
-        margin: 75,
-        options3d: {
+         options3d: {
             enabled: true,
             alpha: 15,
             beta: 15,
             depth: 50
         }
+    },
+    title: {
+        text: ''
     },
     plotOptions: {
         column: {
@@ -63,14 +62,15 @@ export class HomeComponent implements OnInit {
 this.optionsStack = {
   chart: {
     type: 'column',
-    margin: 75,
-    width: 400,
-    options3d: {
+      options3d: {
 enabled: true,
         alpha: 15,
         beta: 15,
         depth: 110
     }
+},
+title: {
+    text: ''
 },
 plotOptions: {
     column: {
@@ -94,16 +94,21 @@ series: [{
 
 this.pie3D = {
     chart: {
-        width: 400,
-        type: 'pie',
+         type: 'pie',
         options3d: {
             enabled: true,
             alpha: 45,
             beta: 0,
-        }
+        },
+        spacingTop:0
     },
+    
+    exporting:false,
     title: {
-        text: 'Pie Chart 3D'
+        text: '',
+        style:{
+            display:'none'
+        }
     },
     plotOptions: {
         pie: {
@@ -120,7 +125,7 @@ this.areaspline = {
         type: 'areaspline'
     },
     title: {
-        text: 'Average fruit consumption during one week'
+        text: ''
     },
     legend: {
         layout: 'vertical',
@@ -140,12 +145,7 @@ this.areaspline = {
             'Friday',
             'Saturday',
             'Sunday'
-        ],
-        plotBands: [{ // visualize the weekend
-            from: 4.5,
-            to: 6.5,
-            color: 'rgba(68, 170, 213, .2)'
-        }]
+        ]
     },
     yAxis: {
         title: {
@@ -183,18 +183,17 @@ this.areaspline = {
 
 this.donutChart = {
     chart: {
-        width: 400,
-        type: 'pie',
+         type: 'pie',
         options3d: {
             enabled: true,
             alpha: 45
         }
     },
     title: {
-        text: 'Contents of Highsoft\'s weekly fruit delivery'
+        text: ''
     },
     subtitle: {
-        text: '3D donut in Highcharts'
+        text: ''
     },
     plotOptions: {
         pie: {
@@ -221,8 +220,7 @@ this.donutChart = {
 
 this.columnNull = {
     chart: {
-        width: 400,
-        type: 'column',
+         type: 'column',
         options3d: {
             enabled: true,
             alpha: 10,
@@ -231,10 +229,10 @@ this.columnNull = {
         }
     },
     title: {
-        text: '3D chart with null values'
+        text: ''
     },
     subtitle: {
-        text: 'Notice the difference between a 0 value and a null point'
+        text: ''
     },
     plotOptions: {
         column: {

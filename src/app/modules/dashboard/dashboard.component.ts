@@ -54,17 +54,17 @@ export class DashboardComponent implements OnInit {
     ];
    }
 
-   openDialog(){
-    let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+  //  openDialog(){
+  //   let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+  //     width: '250px',
      
-    });
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
       
-    });
-  };
+  //   });
+  // };
 
  
 

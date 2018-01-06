@@ -32,7 +32,7 @@ import { MenulistComponent } from './components/sidebar/menulist/menulist.compon
 import { MaterialModule } from './material.module';
 import { ChartModule } from 'angular2-highcharts';
 
- 
+ declare var require: any;
 
 @NgModule({
   declarations: [

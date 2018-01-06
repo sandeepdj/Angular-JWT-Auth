@@ -11,8 +11,6 @@ import { SidebarService } from './../../services/index';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-
-
 export class SidebarComponent implements OnInit {
     _postsArray:any[];
 
