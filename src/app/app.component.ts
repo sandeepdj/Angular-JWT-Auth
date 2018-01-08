@@ -5,6 +5,7 @@ import { Component,HostListener } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   	key:any;
 	@HostListener("window:beforeunload",["$event"])

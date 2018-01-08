@@ -2,7 +2,7 @@
 function adminDb(){
     $host="localhost";
     $user = "root";
-    $pass="root";
+    $pass="";
     $db="s_admin";
     $con = mysqli_connect($host,$user,$pass,$db);
     return $con;
@@ -10,7 +10,7 @@ function adminDb(){
 function getConnection($dbname){
     $host="localhost";
     $user = "root";
-    $pass="root";
+    $pass="";
     $db=$dbname;
     $conn = mysqli_connect($host,$user,$pass,$db);
     return $conn;

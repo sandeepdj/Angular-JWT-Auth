@@ -16,8 +16,16 @@ export class LoginComponent implements OnInit {
  message: string;
   constructor(private Auth: AuthService,private router: Router) { }
 
+
   ngOnInit() {
   }
+
+ acYears = [
+    {value: '1718', viewValue: '2017-2018'},
+    {value: '1819', viewValue: '2018-2019'},
+    {value: '1920', viewValue: '2019-2000'}
+  ];
+
 
   login() {
     this.loading = true;
@@ -27,6 +35,7 @@ export class LoginComponent implements OnInit {
     var scode = this.user.scode;
     var fyear = this.user.fyear;
     var userData ={username:username, password:password,scode:scode,fyear:fyear};
+    console.log(userData);
     this.Auth.login(userData)
         .subscribe(
             data => {

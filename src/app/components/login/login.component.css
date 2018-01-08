@@ -1,21 +1,35 @@
-.login-page{
-    height: 100%;
+ .wraplog{
+    position: relative;
+    float: left;
     width: 100%;
-    background: url('./../../../assets/login.png');
-    background-size: contain;
-    background-position: center;
-}
-
-.login-page .container-fluid, .login-page .container-fluid .row, .login-left-part, .login-right-part{
     height: 100%;
+    background:linear-gradient(0deg,rgba(67, 102, 135,0.9),rgba(67, 102, 135,0.9)),url('../../../assets/610851674.jpg');
+    background-size: cover;
+    background-position: right top;
+    background-repeat: no-repeat;
+ }
+ .login-page{
+    padding-left: 0;
+    max-width: 360px;
+    margin: 5% auto;
+    overflow-x: hidden;
+ }
+.pad-r-0{
+    padding-right: 0px;
 }
 
-.login-right-part{
-    background: #ffffff
+.pad-l-0{
+    padding-left: 0px;
 }
+
+ .full-width{
+    width: 100%;
+ }
+ 
+ 
 .authForm{
     margin-top: 10%;
-    padding: 20%;
+   
 }
 .authForm .form-control{
     height: 40px;
